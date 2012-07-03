@@ -1,0 +1,416 @@
+/* General options */
+html, body {
+	height: 98%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-family: arial;
+}
+body {
+	min-height: 98%;
+	width: 98%;
+	padding: 10px;
+	margin: 0 auto;
+	background-color: #D9E5FF;
+}
+div#header {
+    /*width: 99%;*/
+    height: 85px;
+	background: #AAC7EA;
+	color: #fff;
+	padding-left: 625px;
+	padding-right: 5px;
+	background: url('images/evf.png') no-repeat;
+	margin-bottom: 5px;
+}
+div#header h1 {
+	font-size: 32px;
+	text-shadow: 0 0 4px white, 3px 3px 4px #D9E5FF, 3px 3px 6px #AAC7EA, 2px 3px 11px #7EACE9, 3px 2px 18px #2D99D9;
+}
+div#center {
+	overflow: auto;
+	height: 87%;
+	width: 98%;
+	border: 0;
+}
+div#content {
+	margin: auto;
+	border-right: 1px dashed #AAC7EA;
+	padding-right: 2px;
+}
+#compare_player_options{
+    text-align: center;
+    width: 400px;
+    margin-left: 35px;
+    float: left;
+}
+div#footer {
+	position: relative;
+	float: left;
+    background: #AAC7EA;
+	color: #fff;
+	height: 20px;
+	padding-left: 5;
+	padding-right: 5;
+	border: 2px solid #000;
+	width: 99%;
+}
+/* Forms */
+select {
+	border: 1px solid #AAC7EA;
+	background-color: #D9E5FF;
+	color: #2D486A;
+}
+input{
+    border: 1px solid #AAC7EA;
+	background-color: #D9E5FF;
+	color: #2D486A;
+}
+.option_g {
+	color: #000;
+	font-weight: bold;
+	background-color: #e6dc81;
+}
+.option_d {
+	color: #000;
+	font-weight: bold;
+	background-color: #87B0DB;
+}
+.option_m {
+	color: #000;
+	font-weight: bold;
+	background-color: #85bb88;
+}
+.option_a {
+	color: #000;
+	font-weight: bold;
+	background-color: #d77f7f;
+}
+.toolbar {
+	text-align: left;
+	margin-top: 15px;
+}
+#apply_all_postes {
+	font-size: 11px;
+}
+.save_input {
+    background-color: #AAC7EA;
+    border-color: #DDD #000 #000 #DDD;
+	border-radius: 10px;
+	cursor: pointer;
+}
+textarea{
+    border-radius: 8px;
+}
+/* Popup status */
+#status_container {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	padding-top: 15px;
+}
+#status {
+	background-color: #fff;
+	border: 1px solid #435CA4;
+	border-radius: 5px;
+	top: 30px;
+	left:;
+	z-index: 50;
+	margin: 0 auto 0 auto;
+	width: 250px;
+	box-shadow: 3px 3px 3px 2px rgba(50, 100, 125, 0.6);
+}
+
+/* General options */
+.evf_icon{
+    display: inline-block;
+    background-image:url('chrome-extension://__MSG_@@extension_id__/images/evf_icons_menu.png');
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin: 2px 4px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.tb1 {
+    background-position: 0 0px;
+}
+.tb2 {
+    background-position: 0 -16px;
+}
+.tb3 {
+    background-position: 0 -32px;
+}
+#toggle_link_evf_links_display, .evf_links_categories_display, legend{
+    cursor: pointer;
+}
+.evf_links_display{
+    font-size: 90%;
+    padding-left: 25px;
+    display: none;
+}
+.evf_order_value, .custom_link_order{
+    width: 30px;
+    margin-left: 10px;
+    vertical-align: top;
+    height: ;
+}
+.custom_link_label{
+    width: 200px;
+}
+.custom_link_url{
+    width: 300px;
+}
+.general_option_block{
+    display: none;
+}
+#stock_fields{
+    line-height: 0.5em;
+    border-spacing: 0;
+    font-size: 12px;
+}
+.stock_field{
+    width: 50px;
+    height: 16px;
+    font-size: 11px;
+    border-radius: 8px;
+    text-align: right;
+}
+.sf_bold{
+    font-weight: bold;
+    color: #c00;
+}
+#stock_fields_form{
+    width: 24%;
+}
+#stock_fields_form_history{
+    width: 6%;
+}
+#stock_history_container{
+    width: 68%;
+    overflow: hidden;
+}
+#stock_history_subcontainer{
+    width: 750px;
+    height: 300px;
+    overflow: auto;
+}
+#stock_history{
+    width: 6000px;
+    height: 350px;
+    overflow: auto;
+}
+.stock_history_table{
+    margin-left: 2px;
+}
+.stock_history_table tr{
+    height: 18px;
+}
+.stock_history_table, #stock_history_detail_table{
+    line-height: 0.5em;
+    border-spacing: 0;
+    font-size: 12px;
+}
+#stock_fields_form, #stock_fields_form_history, #stock_history, .stock_history_table{
+    float: left;
+}
+#stock_fields_form td, .stock_history_table td{
+    border-bottom: 0px solid #000;
+}
+#stock_fields_form td.evf_header1, .stock_history_table td.evf_header1, .evf_header1{
+    line-height: normal;
+    font-weight: bold;
+    background-color: #D9E5FF;
+    font-size: 12px;
+    vertical-align: top;
+    font-family: arial;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    border: 1px solid #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-radius: 5px;
+    text-align: center;
+}
+input.link{
+    width: 60px;
+    text-align: center;
+    padding: 1px;
+}
+#impex_textarea2{
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 2px dashed #999;
+}
+#impex{
+    width: 600px;
+    height: 200px;
+}
+#impex_one{
+    width: 600px;
+    height: 120px;
+}
+#impex_toolbar{
+    text-align: center;
+    width: 400px;
+    margin-left: 35px;
+}
+/* Edit 'Compare values' table */
+td.space_bot1 {
+	width: 70px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+input.pl_params {
+	font-size: 11px;
+	width: 25px;
+	border: 0;
+	background-color: transparent;
+}
+.slider_pl_param1 {
+	width: 70px;
+}
+#player_values {
+    float:left;
+	width: 22%;
+}
+#player_values .label {
+	font-size: 12px;
+}
+/* Compare table */
+#players_compare_table {
+	height: 400px;
+	width: 100%;
+	font-size: 8px;
+	overflow: auto;
+}
+#compare_players_table {
+	font-size: 11px;
+}
+.cells_hover {
+    background-color: #fff;
+}
+.evf_table_header {
+	font-weight: bold;
+}
+.evf_table_content {
+	font-color: #666;
+}
+/* Jquery UI override */
+.ui-slider .ui-slider-handle {
+	height: 10px;
+	cursor: pointer;
+}
+.ui-slider-horizontal .ui-slider-handle {
+	top: -4px;
+}
+.ui-slider-horizontal {
+	height: 8px;
+}
+.ui-widget-content {
+    border: 1px solid #AAC7EA;
+    background: #EEE;
+    color: #333;
+    border-image: initial;
+}
+#tabs .ui-state-default, #tabs .ui-widget-content .ui-state-default, #tabs .ui-widget-header .ui-state-default {
+	border: 1px solid #AAC7EA;
+	background: #f6f6f6;
+	font-weight: bold;
+	color: #1c94c4;
+	height: 27px;
+	line-height: 10px;
+}
+#player_values .ui-state-default, #player_values .ui-widget-content .ui-state-default, #player_values .ui-widget-header .ui-state-default {
+	border: 1px solid #AAC7EA;
+	background: #f6f6f6;
+	font-weight: bold;
+	color: #1c94c4;
+	height: 15px;
+}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+	color: #83ADD8;
+	text-decoration: none;
+	text-shadow: 0.1em 0.1em 0.1em black
+}
+.ui-state-default a:hover {
+	color: #83ADD8;
+	text-decoration: underline;
+	text-shadow: 0.1em 0.1em 0.1em black
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+	border: 1px solid #6497CD;
+	background: #F1F5FF;
+	font-weight: bold;
+	color: #3E74CA;
+}
+.ui-state-hover a, .ui-state-hover a:hover {
+	color: #5274AD;
+	text-decoration: none;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	border: 1px solid #72A1D6;
+	background: #ffffff;
+	font-weight: bold;
+	color: #eb8f00;
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+	color: #B81723;
+	text-decoration: none;
+}
+.ui-widget:active {
+	outline: none;
+}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{
+    font-size: 11px;
+}
+/* Tabs */
+.ui-tabs-nav {
+	height: 30px;
+	background: #AAC7EA;
+	border: 0;
+}
+#tabs{
+    width: 100%;
+    float: left;
+    background-image: url('images/evf_bg1.png');
+    background-position: 95% 60px;
+    background-repeat: no-repeat;
+}
+#tabs, #tabs-1, #tabs-2 {
+	background-color: transparent;
+}
+.ui-tabs {
+	padding: 0;
+}
+#tabs h3{
+    margin: 0;
+}
+#tabs fieldset{
+    border: 1px dashed;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    background-color: #AAC7EA;
+    border-radius: 10px;
+}
+/* Help */
+#help_container h2{
+    cursor: pointer;
+}
+.help_block{
+    display: none;
+}
+.tb6_delete {
+    display: inline-block;
+    background-image:url('chrome-extension://__MSG_@@extension_id__/images/evf_icons_menu.png');
+    background-position: -2px -82px;
+    width: 12px;
+    height: 12px;
+    float: right;
+    cursor: pointer;
+}

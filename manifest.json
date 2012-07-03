@@ -1,0 +1,21 @@
+{
+  "name": "eVF",
+  "version": "0.1.5",
+  "description": "Ma petite extension pour Virtuafoot",
+  "background_page": "evf_background.html",
+  "options_page": "evf_options.html",
+  "permissions": [
+        "cookies",
+        "tabs",
+        "notifications",
+        "http://*/*", 
+        "https://*/*"
+    ],
+  "content_scripts": [
+    {
+      "matches": ["http://www.virtuafoot.com/*"],
+      "js": ["evf_json.js", "evf_jquery.js", "evf_jquery_ui.js", "evf_jquery_timepicker.js", "evf_config.js", "evf_default.js"],
+      "css": ["css/le-frog/jquery-ui-1.8.18.custom.css", "evf_default.css"]
+    }
+  ]
+}

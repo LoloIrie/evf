@@ -1,0 +1,685 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>eVF Extension Options</title>
+<script type="text/javascript" src="evf_json.js"></script>
+<script type="text/javascript" src="evf_jquery.js"></script>
+<script type="text/javascript" src="evf_jquery_ui.js"></script>
+<script type="text/javascript" src="evf_config.js" charset="utf-8"></script>
+<script type="text/javascript" src="evf_options.js" charset="utf-8"></script>
+<script type="text/javascript" src="jscolor/jscolor.js" charset="utf-8"></script>
+
+<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.8.17.custom.css" />
+<link rel="stylesheet" type="text/css" href="evf_options.css" />
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+<div id="header">
+    <h1>eVF 1.x Configuration</h1>
+</div>
+<!-- #HEADER -->
+
+<!-- MAIN CONTAINER -->
+<div id="center">
+    
+    <!-- CONTENT -->
+    <div id="content">
+            
+            <script>
+        	$(function() {
+                if(typeof(eVF_prefs['evf_current_option_page']) != 'undefined'){
+                    // Open the last tab selected
+                    tab_opened = parseInt(eVF_prefs['evf_current_option_page']);
+                    $("#tabs").tabs({ selected: tab_opened });
+                }else{
+                    $("#tabs").tabs();
+                }
+        		
+        	});
+        	</script>
+            
+            <!-- TABS -->
+            <div id="tabs">
+                <!-- TABS NAVIGATION -->
+            	<ul class="evf_tabs">
+            		<li class="evf_tablink" id="evf_tablink0"><a href="#tabs-1">Options générales</a></li>
+                    <li class="evf_tablink" id="evf_tablink1"><a href="#tabs-2">Coefficients de comparaison</a></li>
+            		<li class="evf_tablink" id="evf_tablink99"><a href="#tabs-99">Aide / Crédits</a></li>
+            	</ul>
+            	<!-- #TABS NAVIGATION -->
+            	
+            	
+            	<!-- TAB 1: OPTIONS GENERALES -->
+                <div id="tabs-1" class="evf_tab">
+                    <h2>Options générales</h2>
+                    
+                    <!--  Couleurs / Layout -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>Couleurs et design</legend>
+                    <div class="general_option_block">
+                        <label for="evf1_color_alert">Couleur texte alerte:</label>
+                        <input class="color {hash:true}" id="evf1_color_alert" />
+                        
+                        <div class="toolbar">
+                            <button onclick="save_options(1)" class="save_input">Sauver</button>
+                        </div>
+                    </div>
+                    </fieldset>
+                    
+                    
+                    <!-- Menu -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>eVF Menu</legend>
+                    <div class="general_option_block">
+                        <input type="radio" name="evf_menu_display" id="evf_menu_display1" value="1" checked="checked">
+                        <label for="evf_menu_display1">Afficher le menu complet</label>
+                        <br />
+                        <input type="radio" name="evf_menu_display" id="evf_menu_display2" value="2">
+                        <label for="evf_menu_display2">Afficher uniquement la barre d'outils</label>
+                        
+                        <br /><br />
+                        <input type="checkbox" name="evf_magic_help" id="evf_magic_help" value="1">
+                        <label for="evf_magic_help">Confirmer les actions magiques effectuées par eVF ?</label>
+
+                        <br /><br />
+                        <input type="checkbox" name="evf_menu_fixed" id="evf_menu_fixed" value="1">
+                        <label for="evf_menu_fixed">Afficher le menu à une position fixe (standard VF) ?</label>
+                        
+                        
+                        <div class="toolbar">
+                            <button onclick="save_options(1)" class="save_input">Sauver</button>
+                        </div>
+                        
+                        <div id="menu_links_display">
+                        <h4>Liens à afficher dans le menu eVF</h4>
+                        </div>
+                        
+                        <div class="toolbar">
+                            <button onclick="save_options(1)" class="save_input">Sauver</button>
+                        </div>
+                        
+                        <div id="menu_customlinks_display">
+                        <h4>Liens personnalisés dans le menu eVF</h4>
+                        </div>
+                        
+                        <button id="add_custom_link" class="save_input" >Ajouter un lien personnalisé</button>
+                        
+                        <div class="toolbar">
+                            <button onclick="save_options(1)" class="save_input">Sauver</button>
+                        </div>
+                    </fieldset>
+                    
+                    
+                    <!--  Import / Export -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>Import / Export</legend>
+                    <div class="general_option_block" id="import_export_options">
+                        <div id="impex_textarea">
+                            Importer ou exporter TOUTES les préférences<br />
+                            <textarea id="impex" ></textarea>
+                        </div>
+                        <div class="toolbar">
+                            <button onclick="evf_import(1);" class="save_input">Importer</button>
+                            ou
+                            <button onclick="evf_export(1);" class="save_input">Exporter</button>
+                        </div>
+                        
+                        
+                        <div id="impex_textarea2">
+                            Editer une préférence
+                            <br />
+                            <select type="text" class="evf_field" id="prefs_select_importexport" >
+                                <option value="0" >Préférences existantes...</option>
+                            </select>
+                            <br /><br />
+                            <textarea id="impex_one" ></textarea>
+                        </div>
+                        <div class="toolbar">
+                            <button onclick="evf_import(2);" class="save_input">Sauver</button>
+                        </div>
+                    </div>
+                    </fieldset>
+                    
+                    
+                    <!--  Boutique -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>Boutique</legend>
+                    <div class="general_option_block" id="import_export_options">
+                        <div id="stock_fields_form">
+                            <table id="stock_fields"></table>
+                            
+                            <div id="impex_toolbar">
+                                <span id="total_stock_user"></span> articles<br />
+                                <button onclick="evf_save_stock();" class="save_input">Sauver</button>
+                            </div>
+                        </div>
+                        
+                        
+                        <div id="stock_fields_form_history">
+                            <table id="stock_history_detail_table" >
+                                <tr><td class="evf_header1">Quantité</td></tr>
+                            </table>
+                        </div>
+                        
+                        <div id="stock_history_container"><div id="stock_history_subcontainer"><div id="stock_history"></div></div></div>
+                    </div>
+                    </fieldset>
+                    
+                    <!--  eVF LIVE -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>eVF LIVE</legend>
+                    <div class="general_option_block">
+                        <div style="margin-bottom: 25px;">eVF LIVE est un projet collaboratif visant à archiver des informations de VF à des fins de statistiques.<br /><br />Si tu participes, des données relatives à tes joueurs seront automatiquement envoyées aux serveurs d'eVF pour en faire profiter la communauté.<br /><br />Rien ne t'oblige à participer, mais plus de données seront collectées, plus les statistiques auront un interêt... Et ces statistiques te seront surement utiles aussi. ;)</div>
+                        <label for="eVF_server">Participer au projet:</label>
+                        <input type="checkbox" name="eVF_server" id="eVF_server" value="1">
+                        
+                        <div class="toolbar">
+                            <button onclick="save_options(4)" class="save_input">Sauver</button>
+                        </div>
+                    </div>
+                    </fieldset>
+                    
+                    
+                </div>
+                <!-- #TAB 1: OPTIONS GENERALES -->
+                
+                
+                <!-- TAB 2: COMPARE PLAYER FORM -->
+                <div id="tabs-2" class="evf_tab">
+                    
+                    <!--  Compare player form -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>Modifier</legend>
+                    <div class="general_option_block">
+                    
+                        <div id="player_values">
+                           
+                            <h3 id="posteToCompare_header">Gardien</h3>
+                            
+                            <table id="players_compare_values" class="player_parameters">
+                                <tr>
+                                    <td class="label">Age</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_age = '#gar_age';
+                                    $(function() {
+                                		$( "#slider_age" ).slider({
+                                			value:$( slider_age ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_age ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_age"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_age" />
+                                    <script type="text/javascript">
+                                        $(function() {
+                                            $(slider_age).bind('keyup', function(){
+                                                $("#slider_age").slider('value', $(this).val());
+                                            });
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Gardien</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_gar = '#gar_gar';
+                                    $(function() {
+                                		$( "#slider_gar" ).slider({
+                                			value:$( slider_gar ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                                $( slider_gar ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_gar"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_gar" />
+                                    <script type="text/javascript">
+                                        $(slider_gar).bind('keyup', function(){
+                                            $("#slider_gar").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Défense</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_def = '#gar_def';
+                                    $(function() {
+                                		$( "#slider_def" ).slider({
+                                			value:$( slider_def ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_def ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_def"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_def" />
+                                    <script type="text/javascript">
+                                        $(slider_def).bind('keyup', function(){
+                                            $("#slider_def").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Tacle</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_tac = '#gar_tac';
+                                    $(function() {
+                                		$( "#slider_tac" ).slider({
+                                			value:$( slider_tac ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_tac ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_tac"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_tac" />
+                                    <script type="text/javascript">
+                                        $(slider_tac).bind('keyup', function(){
+                                            $("#slider_tac").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Placement</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_pla = '#gar_pla';
+                                    $(function() {
+                                		$( "#slider_pla" ).slider({
+                                			value:$( slider_pla ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_pla ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_pla"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_pla" />
+                                    <script type="text/javascript">
+                                        $(slider_pla).bind('keyup', function(){
+                                            $("#slider_pla").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Marquage</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_mar = '#gar_mar';
+                                    $(function() {
+                                		$( "#slider_mar" ).slider({
+                                			value:$( slider_mar ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_mar ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_mar"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_mar" />
+                                    <script type="text/javascript">
+                                        $(slider_mar).bind('keyup', function(){
+                                            $("#slider_mar").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Puissance</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_pui = '#gar_pui';
+                                    $(function() {
+                                		$( "#slider_pui" ).slider({
+                                			value:$( slider_pui ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_pui ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_pui"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_pui" />
+                                    <script type="text/javascript">
+                                        $(slider_pui).bind('keyup', function(){
+                                            $("#slider_pui").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Passes</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_pas = '#gar_pas';
+                                    $(function() {
+                                		$( "#slider_pas" ).slider({
+                                			value:$( slider_pas ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_pas ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_pas"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_pas" />
+                                    <script type="text/javascript">
+                                        $(slider_pas).bind('keyup', function(){
+                                            $("#slider_pas").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Technique</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_tec = '#gar_tec';
+                                    $(function() {
+                                		$( "#slider_tec" ).slider({
+                                			value:$( slider_tec ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_tec ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_tec"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_tec" />
+                                    <script type="text/javascript">
+                                        $(slider_tec).bind('keyup', function(){
+                                            $("#slider_tec").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Vitesse</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_vit = '#gar_vit';
+                                    $(function() {
+                                		$( "#slider_vit" ).slider({
+                                			value:$( slider_vit ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_vit ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_vit"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_vit" />
+                                    <script type="text/javascript">
+                                        $(slider_vit).bind('keyup', function(){
+                                            $("#slider_vit").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Attaque</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_att = '#gar_att';
+                                    $(function() {
+                                		$( "#slider_att" ).slider({
+                                			value:$( slider_att ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_att ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_att"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_att" />
+                                    <script type="text/javascript">
+                                        $(slider_att).bind('keyup', function(){
+                                            $("#slider_att").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Endurance</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_end = '#gar_end';
+                                    $(function() {
+                                		$( "#slider_end" ).slider({
+                                			value:$( slider_end ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_end ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_end"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_end" />
+                                    <script type="text/javascript">
+                                        $(slider_end).bind('keyup', function(){
+                                            $("#slider_end").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Note globale</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_ngl = '#gar_ngl';
+                                    $(function() {
+                                		$( "#slider_ngl" ).slider({
+                                			value:$( slider_ngl ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_ngl ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_ngl"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_ngl" />
+                                    <script type="text/javascript">
+                                        $(slider_ngl).bind('keyup', function(){
+                                            $("#slider_ngl").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Potentiel</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_pot = '#gar_pot';
+                                    $(function() {
+                                		$( "#slider_pot" ).slider({
+                                			value:$( slider_pot ).val(),
+                                			min: 0,
+                                			max: 100,
+                                			slide: function( event, ui ) {
+                                				$( slider_pot ).val( ui.value );
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_pot"></div></td>
+                                    <td class="val_displayed1"><input class="pl_params" type="text" id="gar_pot" />
+                                    <script type="text/javascript">
+                                        $(slider_pot).bind('keyup', function(){
+                                            $("#slider_pot").slider('value', $(this).val());
+                                        });
+                                    </script>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="label">Toutes les caracteristiques</td>
+                                    <td class="space_bot1">
+                                    <script type="text/javascript">
+                                    var slider_all = '#all';
+                                    $(function() {
+                                		$( "#slider_all" ).slider({
+                                			value: 100,
+                                			min: 0,
+                                			max: 200,
+                                			slide: function( event, ui ) {
+                                			    //myconsole( 'Value:' + ui.value );
+                                			    updateAllSliders(ui.value);
+                                			}
+                                		});
+                                	});
+                                	</script>
+                                    
+                                    <div class="slider_pl_param1" id="slider_all"></div></td>
+                                    <td class="val_displayed1"></td>
+                                </tr>
+                            </table>
+                            
+                            
+                        </div>
+                        
+                        <div id="compare_player_options">
+                            <select id="posteToCompare" class="evf_player_positions_select" ></select>
+                            
+                            <div class="toolbar" style="text-align: center;">
+                                <button onclick="save_options(2)" class="save_input">Sauver juste pour ce poste</button>
+                                <br />ou<br />
+                                <button onclick="save_options(3)" class="save_input">Sauver pour tous les postes</button>
+                             </div>
+                        </div>
+                    </div>
+                    </fieldset>
+                    
+                    <!--  Compare player form -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>Voir les valeurs</legend>
+                    <div class="general_option_block">
+                        <div id="players_compare_table"></div>
+                    </div>
+                    </fieldset>
+            	</div>
+            	<!-- #TAB 2: COMPARE PLAYER FORM -->
+            	
+            	<!-- TAB 99: HELP -->
+            	<div id="tabs-99" class="evf_tab">
+            		
+            		<!--  Aide -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>Aide</legend>
+                    <div class="general_option_block">
+                        L'aide intégrée n'est pas disponible pour le moment, mais...
+                        <br />
+                		<a href="http://villenouvelle-breizh.max2forum.com/" target="_blank">vous trouverez de l'aide sur le forum de la BV (Breizh Villenouvelloise)</a>
+                    </div>
+                    </fieldset>
+            		
+            		<!--  Crédits -->
+                    <fieldset>
+                    <legend><a class="evf_icon tb2 fieldset_exp" title="Ouvrir le menu" ></a>Crédits et remerciements</legend>
+                    <div class="general_option_block">
+                        eVF est dévelopée exclusivement par Laurent Dorier (alias Lolo Irie).
+                        <br /><br />
+                		Je tiens à remercier Aymeric Le Corre, auteur de Virtuafoot, pour son accord pour la distribution de cette extension.
+                		<br /><br />
+                		Un grand merci également aux quelques membres de l'entente BV qui jouent aux testeurs et soumettent de nouvelles idées.
+                    </div>
+                    </fieldset>
+            		<!--
+                    <div id="help_container">
+                		<h2>Configurer correctement eVF</h2>
+                        <div class="help_block">
+                            <object type="application/x-shockwave-flash" data="help/evf_help1.swf" width="800" height="600">
+                                <param name="movie" value="help/evf_help1.swf" />
+                                <param name="wmode" value="transparent">
+                            </object>
+                        </div>
+                        
+                        <h2>Tester l'installation</h2>
+                        <div class="help_block">
+                            <object type="application/x-shockwave-flash" data="help/evf_help1.swf" width="800" height="600">
+                                <param name="movie" value="help/evf_help2.swf" />
+                                <param name="wmode" value="transparent">
+                            </object>
+                        </div>
+                        
+                        
+                    </div>
+            		-->
+            		
+            	</div>
+            	<!-- #TAB 99: HELP -->
+            	
+            </div>
+            <!-- #TABS -->
+        
+    </div><!-- #CONTENT -->
+</div>
+<!-- #MAIN CONTAINER -->
+
+<!-- FOOTER -->
+<div id="footer">eVF © 2012 Laurent Dorier (alias Lolo Irie)</div>
+<!-- #FOOTER -->
+
+<!-- STATUS INFO -->
+<div id="status_container">
+    <div id="status"></div>
+</div>
+<!-- #STATUS INFO -->
+
+</body>
+</html>

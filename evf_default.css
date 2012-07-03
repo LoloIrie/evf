@@ -1,0 +1,181 @@
+/* CSS Document */
+
+/* My menu */
+#ldo_menu{
+    margin-top: -10px;
+    margin-bottom: 15px;
+    /*padding-left: 8px;*/
+    /*border-radius: 10px;*/
+    /*box-shadow: #000 0 0 18px 0;*/
+    position: relative;
+}
+
+#ldo_menu_toolbar{
+    width: 290px;
+    height: 19px;
+    border-radius: 5px;
+    box-shadow: #000 0 0 18px 0;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(5%,#5D8BEB),color-stop(95%,#0D225A));
+    padding: 5px;
+    margin-top: 2px;
+    position: absolute;
+    top: 0;
+}
+
+#ldo_menu_toolbar .evf_icon{
+    display: inline-block;
+    background-image:url('chrome-extension://__MSG_@@extension_id__/images/evf_icons_menu.png');
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin: 2px 4px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#ldo_menu_toolbar .sp1 {
+    background-position: 0 0px;
+}
+
+#ldo_menu_toolbar .sp2 {
+    background-position: 0 -16px;
+}
+
+#ldo_menu_toolbar .sp3 {
+    background-position: 0 -32px;
+}
+
+.tb1 {
+    background-position: 0 0px;
+}
+
+.tb2 {
+    background-position: 0 -16px;
+}
+
+.tb3 {
+    background-position: 0 -32px;
+}
+
+.tb4 {
+    background-position: 0 -48px;
+}
+
+.tb5 {
+    background-position: 0 -64px;
+}
+
+.tb6_delete {
+    display: inline-block;
+    background-image:url('chrome-extension://__MSG_@@extension_id__/images/evf_icons_menu.png');
+    background-position: -2px -82px;
+    width: 12px;
+    height: 12px;
+    float: right;
+}
+#evf_display_notes_list li:hover {
+    background-color: #DCD092;
+}
+
+#ldo_menu_expand{
+    text-align: right;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+#ldo_menu_quicklinks{
+    position: absolute;
+    top: 36px;
+    width: 290px;
+    z-index: 10;
+}
+
+#ldo_menu_quicklinks a{
+    color: #000;
+    font-weight: bold;
+}
+
+#ldo_menu_quicklinks a:hover{
+    color: #FA880B;
+}
+
+#ldo_menu_subtoolbar{
+    display: none;
+    position: absolute;
+    top: 32px;
+    /*height: 30px;*/
+    border: 2px solid #999;
+    border-radius: 5px;
+    width: 287px;
+    padding: 5px;
+    background: -webkit-linear-gradient(top, #ffffff, #b2ceff);
+    box-shadow: #000 3px 3px 16px 8px;
+    z-index: 10;
+}
+
+#ldo_menu_subtoolbar_content li{
+    list-style-type: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#evf_existing_notes{
+    position: relative;
+    background: -webkit-linear-gradient(top, #ffffff, #FAF987);
+    border-top: 1px dashed #000;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+.ldo_menu_header {
+    margin: 1px;
+    padding: 3px 10px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #000;
+    width: 278px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.01, #E2ECFC), color-stop(0.5, #A7C2FE), color-stop(0.98, #6E80A7));
+    opacity: 1;
+    color: #000;
+    text-shadow: 0 -1px 1px white;
+}
+
+.ldo_menu_links {
+    padding: 5px 10px;
+    font-weight: normal;
+    color: #000;
+}
+
+#evf_notes{
+    width: 500px;
+    height: 300px;
+    display: none;
+    box-shadow: #000 3px 3px 64px 32px;
+    z-index: 500;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0.01, #EDFABC), color-stop(0.5, #DFEA35), color-stop(0.98, #6E8000));
+    color: #000;
+    font-weight: bold;
+}
+
+#evf_notes textarea{
+    width: 350px;
+}
+
+#evf_notes .evf_input{
+    width: 350px;
+}
+
+.close_alert{
+	cursor: pointer;
+	float: right;
+}
+
+div.vfpop{
+    z-index: 100;
+}
+div#header{
+    background: none;
+}

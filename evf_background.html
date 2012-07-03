@@ -1,0 +1,70 @@
+<html>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="evf_config.js" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+        
+        
+        chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+            switch(request.method){
+                // Method to return all eVF preferences as object
+                case 'getAllPrefs':
+                    eVFprefs = new Object();
+                    nbr_prefs = evf_prefs_name.length;
+                    for(i = 0; i < nbr_prefs; i++){
+                        if(typeof(localStorage[evf_prefs_name[i]]) != 'undefined'){
+                            value = localStorage[evf_prefs_name[i]];
+                        }else{
+                            value = evf_prefs_default[i];
+                        }
+                        eVFprefs[evf_prefs_name[i]] = value;
+                    }
+                    sendResponse({data: eVFprefs});
+                    break;
+                
+                // Method to return one eVF preference as object    
+                case 'getOnePref':
+                    if(typeof(localStorage[request.pref]) != 'undefined'){
+                        sendResponse({data: localStorage[request.pref]});
+                    }else{
+                        sendResponse({});
+                    }
+                    break;
+                
+                // Method to save the stock eVF preference
+                case 'saveStockPrefs':
+                    localStorage['evf_stocks'] = request.evf_stock
+                    sendResponse({data: 'Pref evf_stocks sauvée'});
+                    break;
+                
+                // Method to save the notes eVF preference
+                case 'saveNotesPrefs':
+                    localStorage['evf_notes'] = request.val
+                    sendResponse({data: 'Pref evf_notes sauvée'});
+                    break;
+                
+                case 'includeJsFile':
+                    chrome.tabs.executeScript(null, {file: request.jsfile});
+                    txt = request.jsfile + ' used from background.html...';
+                    sendResponse({data: txt});
+                    break;
+                
+                // Method to return one eVF preference as object    
+                case 'getCookie':
+                    //txt = 'evf_background getCookie: ' + request.cookieName;
+                    txt = chrome.cookies.get({'url': 'http://www.virtuafoot.com', "name": request.cookieName},
+                                               function(cookie) {
+                                                    sendResponse({data: cookie.value});
+                                                }
+                            );
+                    break;
+                    
+                default:
+                    sendResponse({});
+                    break;
+            }
+        });
+
+        
+    </script>
+</html>
