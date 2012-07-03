@@ -1,0 +1,48 @@
+<div><ul></ul></div>
+
+<script>
+    var html_submenu = '';
+    html_submenu += '<li id="evf_note_add_form">Créer une notification</li>';
+    
+    $('#ldo_menu_subtoolbar_content ul').html(html_submenu);
+    $('#ldo_menu_subtoolbar_content li').each(function(){
+        $(this).live('click', function(){
+            func = $(this).attr('id') + '();';
+            myconsole('Try: ' + func);
+            eval(func);
+        });
+    });
+</script>
+
+<div id="evf_existing_notes"></div>
+
+<script>
+    html_notes = '<b>Notifications</b><br />';
+    myconsole('eVF: display current notes');
+    myconsole(eVF_notes);
+    if(Object.getOwnPropertyNames(eVF_notes).length == 0){
+        html_notes += 'Aucune notification actuellement';
+    }else{
+        html_notes += '<ul id="evf_display_notes_list">';
+        for(var i in eVF_notes){
+            evf_datenote = new Date(eVF_notes[i]['date']*1000);
+            var n_dd = evf_datenote.getDate();
+            if(n_dd<10){n_dd='0'+n_dd}
+            var n_mm = evf_datenote.getMonth()+1;
+            if(n_mm<10){n_mm='0'+n_mm}
+            var n_yyyy = evf_datenote.getFullYear();
+            var n_hh = evf_datenote.getHours();
+            if(n_hh<10){n_hh='0'+n_hh}
+            var n_ii = evf_datenote.getMinutes();
+            if(n_ii<10){n_ii='0'+n_ii}
+            evf_datenote = n_dd + '/' + n_mm + '/' +n_yyyy + '/' +n_hh + ':' +n_ii ;
+            html_notes += '<li>' + evf_datenote + ': ' +eVF_notes[i]['sujet'] + '<a class="evf_icon tb6_delete" title="Supprimer cette note" id="evf_rn_' + i + '" ></a></li>';            
+        }
+        html_notes += '</ul>';
+    }
+    $('#evf_existing_notes').html(html_notes);
+    $('.tb6_delete').live('click', function(){
+        id_toDelete = $(this).attr('id').substr(7);
+        evf_remove_note(id_toDelete);
+    });
+</script>

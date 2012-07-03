@@ -1,0 +1,79 @@
+<ul></ul>
+
+<script>
+    var html_submenu = '';
+    var current_vfPage = document.location.href;
+    
+    // Check if player page to add compare buttons
+    regexp_evf = /\#joueur\?jid\=/;
+    if(current_vfPage.search(regexp_evf) != -1){
+        html_submenu += '<li id="evf_add_compare_links">Liens joueurs similaires</li>';
+        html_submenu += '<li id="evf_save_player_infos">Sauvegarder les infos de ce joueur</li>';
+        html_submenu += '<li id="evf_display_players_compare">Comparer les joueurs</li>';
+    }
+    
+    // Check if entrainement page to change colors
+    regexp_evf = /\#training/;
+    if(current_vfPage.search(regexp_evf) != -1){
+        html_submenu += '<li id="evf_change_layout">Changer les couleurs</li>';
+    }
+    
+    // Check if shop page(s) to get sales values or fill form
+    regexp_evf = /\#boutique\/stock/;
+    regexp_evf2 = /\#boutique/;
+    if(current_vfPage.search(regexp_evf) != -1){
+        html_submenu += '<li id="evf_fill_stock">Remplir le formulaire</li>';
+    }else if(current_vfPage.search(regexp_evf2) != -1){
+        html_submenu += '<li id="evf_check_stock">Sauvegarder ces infos de vente</li>';
+    }
+
+
+    
+    if( html_submenu == ''){
+        html_submenu = 'Aucune action disponible pour cette page de VF';
+    }
+    
+    $('#ldo_menu_subtoolbar_content ul').html(html_submenu);
+    $('#ldo_menu_subtoolbar_content li').each(function(){
+        $(this).live('click', function(){
+            if(eVF_prefs['evf_magic_help'] == 1){
+                switch($(this).attr('id')){
+                    case 'evf_change_layout':
+                        js_txt = 'Changer la couleur des notes qui viennent d\'évoluer ?';
+                        break;
+                    
+                    case 'evf_add_compare_links':
+                        js_txt = 'Ajouter des liens pour le comparer avec des joueurs equivalents ?';
+                        break;
+                    
+                    case 'evf_save_player_infos':
+                        js_txt = 'Ajouter ou actualiser les informations de ce joueur ?';
+                        break;
+                    
+                    case 'evf_display_players_compare':
+                        js_txt = 'Comparer les joueurs de votre base de données ?';
+                        break;
+                    
+                    case 'evf_fill_stock':
+                        js_txt = 'Remplir les champs automatiquement ?';
+                        break;
+                    
+                    case 'evf_check_stock':
+                        js_txt = 'Sauvegarder les informations sur vos ventes d\'articles ?';
+                        break;
+                    
+                    default:
+                        js_txt = 'Action ' + $(this).attr('id') + '. Etes vous sur ?';
+                        break;
+                }
+                if(!confirm(js_txt)){
+                    return true;
+                }
+            }
+            
+            func = $(this).attr('id') + '();';
+            myconsole('Try: ' + func);
+            eval(func);
+        });
+    });
+</script>
